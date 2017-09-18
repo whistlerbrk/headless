@@ -187,7 +187,7 @@ private
   def launch_xvfb
     out_pipe, in_pipe = IO.pipe
     @pid = Process.spawn(
-      CliUtil.path_to("Xvfb"), ":#{display}", "-screen", "0", dimensions, "-ac",
+      CliUtil.path_to("Xvfb"), ":#{display}", "-noreset", "-screen", "0", dimensions, "-ac",
       err: in_pipe)
     raise Headless::Exception.new("Xvfb did not launch - something's wrong") unless @pid
     # According to docs, you should either wait or detach on spawned procs:
